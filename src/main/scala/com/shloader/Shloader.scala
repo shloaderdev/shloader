@@ -1,5 +1,8 @@
 package com.shloader
 
+import java.util.Calendar
+import java.text.SimpleDateFormat
+
 /**
  * Main class
  * Inits major components,
@@ -36,12 +39,16 @@ object Shloader {
   }
 
   def main(args:Array[String]) {
-    println("Shloader started")
+    var now = Calendar.getInstance().getTime()
+    val timeFormat = new SimpleDateFormat("hh:mm:ss")
+
+    println("Shloader started at " + timeFormat.format(now))
 
     shareCompleted
     downloadNew
 
-    println("Shloader stopped")
+    now = Calendar.getInstance().getTime
+    println("Shloader stopped at " + timeFormat.format(now))
   }
 
   def shloaderHome = _shloaderHome
