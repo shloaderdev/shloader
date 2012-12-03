@@ -15,37 +15,23 @@ object Shloader {
     throw new Exception("SHLOADER_HOME is not set! Please set SHLOADER_HOME environment variable")
   }
 
-  // TODO create factories for all this stuff
-
-  val sharingService:SharingService = Config.getOption("plugin.sharingservice").getOrElse(Defaults.SHARING_SERVICE) match {
-    case "dropbox" => new DropboxSharingService
-    case other:String => throw new Exception("Unknown sharing service: " + other);null
-  }
-
-  val torrentClient:TorrentClient = Config.getOption("plugin.torrentclient").getOrElse(Defaults.TORRENT_CLIENT) match {
-    case "transmission" => new Transmission
-    case other:String => throw new Exception("Unknown torrent client: " + other);null
-  }
-
   // TODO support using multiple torrent trackers
-  val torrentTracker:TorrentTracker = Config.getOption("plugin.torrenttracker").getOrElse(Defaults.TORRENT_TRACKER) match {
-    case "thepiratebay" => new PirateBayTracker
-    case other:String => throw new Exception("Unknown torrent tracker: " + other);null
-  }
+  private val torrentTracker:TorrentTracker = TorrentTrackerFactory.create(Config.getOption("plugin.torrenttracker").getOrElse(Defaults.TORRENT_TRACKER))
 
-  val episodeSource:EpisodeSource = Config.getOption("plugin.episodesource").getOrElse(Defaults.EPISODE_SOURCE) match {
-    case "myshows" => new MyShowsSource
-    case other:String => throw new Exception("Unknown episode source: " + other);null
-  }
+  private val sharingService:SharingService = SharingServiceFactory.create(Config.getOption("plugin.sharingservice").getOrElse(Defaults.SHARING_SERVICE))
+
+  private val torrentClient:TorrentClient = TorrentClientFactory.create(Config.getOption("plugin.torrentclient").getOrElse(Defaults.TORRENT_CLIENT))
+
+  private val episodeSource:EpisodeSource = EpisodeSourceFactory.create(Config.getOption("plugin.episodesource").getOrElse(Defaults.EPISODE_SOURCE))
 
   def main(args:Array[String]) {
-    var now = Calendar.getInstance().getTime()
+    var now = Calendar.getInstance().getTime
     val timeFormat = new SimpleDateFormat("hh:mm:ss")
 
     println("Shloader started at " + timeFormat.format(now))
 
-    shareCompleted
-    downloadNew
+    shareCompleted()
+    downloadNew()
 
     now = Calendar.getInstance().getTime
     println("Shloader stopped at " + timeFormat.format(now))
@@ -65,7 +51,7 @@ object Shloader {
     })
   }
 
-  private def getAvailableTorrents():List[Torrent] = {
+  private def getAvailableTorrents:List[Torrent] = {
     val episodesToDownload = episodeSource.getEpisodesToDownload()
     var result = List[Torrent]()
 
