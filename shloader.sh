@@ -2,7 +2,7 @@
 
 while true
     do
-        java -cp "target/shloader-1.0-SNAPSHOT.jar:target/lib/*" com.shloader.Shloader
+        java -cp "jar/*" com.shloader.Shloader
 
         OUT=$?
         if [ $OUT -ne 0 ];then
