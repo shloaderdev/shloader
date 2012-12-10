@@ -29,7 +29,7 @@ class MyShowsSource() extends EpisodeSource {
   }
 
   private def initProcessed() {
-    val is = new FileInputStream(Shloader.shloaderHome + "/" + Config.getOption("episodesource.myshows.processed").getOrElse(Defaults.MYSHOWS_PROCESSED_FOLDER))
+    val is = new FileInputStream(Config.getOption("episodesource.myshows.processed").getOrElse(Defaults.MYSHOWS_PROCESSED_FOLDER))
     val episodeStrings = scala.io.Source.fromInputStream(is).getLines.filter(!_.trim.isEmpty)
     processedEpisodes = episodeStrings.map(parseEpisode(_)).toList
   }
@@ -90,7 +90,7 @@ class MyShowsSource() extends EpisodeSource {
   }
 
   override def setProcessed(episode:Episode) {
-    val fw = new FileWriter(Shloader.shloaderHome + "/" + Config.getOption("episodesource.myshows.processed").getOrElse(Defaults.MYSHOWS_PROCESSED_FOLDER), true) ;
+    val fw = new FileWriter(Config.getOption("episodesource.myshows.processed").getOrElse(Defaults.MYSHOWS_PROCESSED_FOLDER), true) ;
     fw.write(episode.showId + " " + episode.seasonNumber + " " + episode.episodeNumber + "\n") ;
     fw.close()
   }

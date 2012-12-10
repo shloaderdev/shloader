@@ -10,11 +10,6 @@ import java.text.SimpleDateFormat
  * and starts new downloads
  */
 object Shloader {
-  private val _shloaderHome = System.getenv("SHLOADER_HOME")
-  if (_shloaderHome == null || _shloaderHome.isEmpty) {
-    throw new Exception("SHLOADER_HOME is not set! Please set SHLOADER_HOME environment variable")
-  }
-
   // TODO support using multiple torrent trackers
   private val torrentTracker:TorrentTracker = TorrentTrackerFactory.create(Config.getOption("plugin.torrenttracker").getOrElse(Defaults.TORRENT_TRACKER))
 
@@ -36,8 +31,6 @@ object Shloader {
     now = Calendar.getInstance().getTime
     println("Shloader stopped at " + timeFormat.format(now))
   }
-
-  def shloaderHome = _shloaderHome
 
   private def shareCompleted() {
     sharingService.share()

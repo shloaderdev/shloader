@@ -25,7 +25,7 @@
         </fileSet>
         <fileSet>
             <directory>src</directory>
-            <outputDirectory>/complete</outputDirectory>
+            <outputDirectory>/completed</outputDirectory>
             <directoryMode>0755</directoryMode>
             <includes>
                 <include></include>
@@ -33,7 +33,7 @@
         </fileSet>
         <fileSet>
             <directory>src</directory>
-            <outputDirectory>/incomplete</outputDirectory>
+            <outputDirectory>/uncompleted</outputDirectory>
             <directoryMode>0755</directoryMode>
             <includes>
                 <include></include>
@@ -45,6 +45,26 @@
             <source>conf-default.properties</source>
             <outputDirectory>/</outputDirectory>
             <destName>conf.properties</destName>
+        </file>
+        <file>
+            <source>empty</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>to_download</destName>
+        </file>
+        <file>
+            <source>empty</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>downloading</destName>
+        </file>
+        <file>
+            <source>empty</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>downloaded</destName>
+        </file>
+        <file>
+            <source>empty</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>myshows_processed</destName>
         </file>
     </files>
 </assembly>

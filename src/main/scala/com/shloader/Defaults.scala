@@ -17,7 +17,7 @@ object Defaults {
 
   val COMPLETE_DIR = "complete"
 
-  val DROPBOX_DIR = "/home/lacungus/Dropbox"
+  val DROPBOX_DIR = "Dropbox"
 
   val TEXT_SOURCE_TO_DOWNLOAD_DIR = "to_download"
 }

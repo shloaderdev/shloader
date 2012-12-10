@@ -8,7 +8,7 @@ import java.io.{FileInputStream, File}
 class TextFileEpisodeSource extends EpisodeSource {
 
   override def getEpisodesToDownload():List[Episode] = {
-    getEpisodesFromFile(Shloader.shloaderHome + "/" + Config.getOption("episodesource.to_download").getOrElse(Defaults.TEXT_SOURCE_TO_DOWNLOAD_DIR))
+    getEpisodesFromFile(Config.getOption("episodesource.to_download").getOrElse(Defaults.TEXT_SOURCE_TO_DOWNLOAD_DIR))
   }
 
   def getEpisodesFromFile(fileName:String):List[Episode] = {
