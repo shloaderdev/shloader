@@ -3,3 +3,4 @@ shloader.iml
 target
 lib
 tmp
+conf.properties

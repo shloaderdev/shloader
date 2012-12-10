@@ -11,5 +11,5 @@ while true
         fi
 
         echo "sleeping..."
-        sleep 900
+        sleep 900 #30 minutes
     done
