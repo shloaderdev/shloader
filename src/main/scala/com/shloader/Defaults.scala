@@ -10,7 +10,7 @@ object Defaults {
   val MYSHOWS_DEFAULT_LOGIN = "shloader"
   val MYSHOWS_DEFAULT_PASSWORD_MD5 = "e332ff761effa6713312cf68132bb3a9"
 
-  val SHARING_SERVICE = "dropbox"
+  val SHARING_SERVICE = "none"
   val TORRENT_CLIENT  = "transmission"
   val TORRENT_TRACKER = "thepiratebay"
   val EPISODE_SOURCE  = "myshows"
